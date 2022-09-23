@@ -21,6 +21,15 @@ public class Complex {
     public double abs() {
         return Math.sqrt(x * x + y * y);
     }
+    
+    public Complex multiply(Complex b) {
+        return new Complex(x * b.x - y * b.y, x * b.y + y * b.x);
+    }
+
+    public Complex divide(Complex b) {
+        double d = b.x * b.x + b.y * b.y;
+        return new Complex((x * b.x + y * b.y) / d, (y * b.x - x * b.y) / d);
+    }
 
     public double arg() {
         if (this.x >= 0) {

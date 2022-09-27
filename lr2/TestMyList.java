@@ -1,4 +1,6 @@
 import org.junit.Test;
+import MyList.*;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestMyList {
@@ -14,6 +16,6 @@ public class TestMyList {
         MyList list = new MyList();
         list.insertTail(5);
         list.deleteList();
-        assertEquals(null, list.firstElement.data, 0); //не работает 
+        assertEquals(0, list.countElements, 0); //не работает 
     }
 }

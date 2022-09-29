@@ -28,10 +28,12 @@ public class MyList {
         if (isEmpty()) {
             firstElement = newnode;
             lastElement = newnode;
+            countElements = 1;
             return;
         }
         lastElement.nextNode = newnode;
         lastElement = newnode;
+        countElements++;
     }
 
     public void insertHead(Object val) {
@@ -39,10 +41,12 @@ public class MyList {
         if (isEmpty()) {
             firstElement = newnode;
             lastElement = newnode;
+            countElements = 1;
             return;
         }
         newnode.nextNode = firstElement;
         firstElement = newnode;
+        countElements++;
     }
 
     public int getLenght(MyList list) {
@@ -71,7 +75,11 @@ public class MyList {
         return null;
     }
 
-    public Object selectByIndex(int index) {
+    public Object selectByIndex(int index) throws Exception {
+        if (index < 0 || index > countElements) {
+            throw new Exception("Index out of range");
+        }
+        
         Node node = firstElement;
 
         for(int i = 0; i < index - 1; i++) {

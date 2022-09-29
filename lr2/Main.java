@@ -1,7 +1,7 @@
 import MyList.*;
 
 class Program{
-    public static void main(String[] argc) {
+    public static void main(String[] argc) throws Exception {
         MyList list = new MyList();
         list.insertHead(5);
         list.insertHead("spisok");

@@ -66,6 +66,62 @@ public class MyList {
         countElements++;
     }
 
+    public void removeHead() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("null list");
+        }
+        firstElement = firstElement.nextNode;
+        countElements--;
+    }
+
+    public void removeTail() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("null list");
+        }
+        Node node = firstElement;
+        while (node.nextNode != lastElement) {
+            node = node.nextNode;
+        }
+        node.nextNode = null;
+        lastElement = node;
+        countElements--;
+    }
+
+    public void removeByIndex(int index) throws Exception {
+        if (index < 0 || index > countElements) {
+            throw new Exception("Index out of range");
+        }
+        if (index == 0) {
+            removeHead();
+            return;
+        }
+        Node node = firstElement;
+        for(int i = 0; i < index - 1; i++) {
+            node = node.nextNode;
+        }
+        node.nextNode = node.nextNode.nextNode;
+        countElements--;
+    }
+
+    public void removeByValue(Object val) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("null list");
+        }
+        Node node = firstElement;
+        if (node.data == val) {
+            removeHead();
+            return;
+        }
+        while (node.nextNode != null) {
+            if (node.nextNode.data == val) {
+                node.nextNode = node.nextNode.nextNode;
+                countElements--;
+                return;
+            }
+            node = node.nextNode;
+        }
+    }
+
     public int getLenght(MyList list) {
         countElements = 0;
         Node node = firstElement;
@@ -76,23 +132,7 @@ public class MyList {
         return countElements;
     }
 
-    public String print(){
-        Node p = firstElement;
-        if (p == null) {
-            System.out.println("Empty List");
-            return null;
-        } else {
-            System.out.println(p.data);
-        }
-        while (p.nextNode != null) {
-            p = p.nextNode;
-            System.out.println(p.data);
-        }
-
-        return null;
-    }
-
-    public Object selectByIndex(int index) throws Exception {
+    public Object getByIndex(int index) throws Exception {
         if (index < 0 || index > countElements) {
             throw new Exception("Index out of range");
         }
@@ -109,6 +149,20 @@ public class MyList {
         firstElement = null;
         lastElement = null;
         countElements = 0;
+    }
+
+    public String print() throws Exception {
+        Node p = firstElement;
+        if (p == null) {
+            throw new Exception("null list");
+        } else {
+            System.out.println(p.data);
+        }
+        while (p.nextNode != null) {
+            p = p.nextNode;
+            System.out.println(p.data);
+        }
+        return null;
     }
 
     // public String toString() {

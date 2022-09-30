@@ -1,5 +1,5 @@
 ::compile and run
-javac .\Main.java
+javac .\MainMyList.java
 javac .\MyList.java
-java .\Main.java
+java .\MainMyList.java
 del .\*.class

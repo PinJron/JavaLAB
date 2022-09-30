@@ -1,5 +1,6 @@
 ::compile and run
-javac .\*.java
+javac .\MainMyVector.java
+javac .\MyVector.java
 cls
-java .\Main.java
+java .\MainMyVector.java
 del .\*.class

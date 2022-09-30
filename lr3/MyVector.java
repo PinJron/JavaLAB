@@ -6,7 +6,7 @@ public class MyVector<T>{
     private int capacity;
 
     public MyVector(){
-        this.arr = (T[])new Object[1];
+        this.arr = (T[])new Object[0];
         this.len = 0;
         this.capacity = 1;
     }
@@ -17,23 +17,23 @@ public class MyVector<T>{
         this.len = 0;
     }
 
-    private MyVector(T[] _array, int _lenght, int _capacity){
-        this.arr = _array;
-        this.len = _lenght;
-        this.capacity = _capacity;
-    }
-
     public MyVector(MyVector<T> _vec){
-        this(_vec.arr, _vec.len, _vec.capacity);
+        this.arr = _vec.arr;
+        this.len = _vec.len;
+        this.capacity = _vec.capacity;
     }
 
-    private void resize(){
+    public void resize(){
         T[] new_arr = (T[])new Object[2*this.capacity + 10];
         for (int i = 0; i < this.capacity; i++){
             new_arr[i] = this.arr[i];
         }
         this.arr = new_arr;
         this.capacity = 2*this.capacity + 10;
+    }
+    
+    public T[] getArr(){
+        return this.arr;
     }
 
     public int getCapacity(){
@@ -44,7 +44,7 @@ public class MyVector<T>{
         return this.len;
     }
 
-    public void push(T _element){
+    public void addLast(T _element){
         if (this.len == this.capacity){
             resize();
         }
@@ -52,22 +52,22 @@ public class MyVector<T>{
         this.len++;
     }
 
-    public T getLast() throws Exception{
+    public T removeLast() throws Exception{
         if (this.len == 0){
-            throw new Exception("Error: nothing to pop");
+            throw new Exception("Error: nothing to remove");
         }
         this.len--;
         return this.arr[len];
     }
 
-    public T get(int _index) throws Exception{
+    public T getByIndex(int _index) throws Exception{
         if (_index > this.len || _index < 0){
             throw new Exception("Bad Index");
         }
         return this.arr[_index];
     }
 
-    public void insert(T _element, int _index) throws Exception{
+    public void insertByIndex(T _element, int _index) throws Exception{
         if (_index > this.len || _index < 0){
             throw new Exception("Bad Index");
         }
@@ -105,8 +105,8 @@ public class MyVector<T>{
     }
 
     public void clear(){
-        this.arr = (T[])new Object[1];
-        this.capacity = 1;
+        this.arr = null;
+        this.capacity = 0;
         this.len = 0;
     }
 

@@ -1,8 +1,14 @@
 public class BinaryTree {
     public class Node {
         private int value; // ключ узла
-        private Node leftChild; // Левый узел потомок
-        private Node rightChild; // Правый узел потомок
+        private Node left; // Левый узел потомок
+        private Node right; // Правый узел потомок
+
+        Node(int value) {
+            this.value = value;
+            right = null;
+            left = null;
+        }
      
         public void printNode() { // Вывод значения узла в консоль
             System.out.println(" Выбранный узел имеет значение : " + value);
@@ -17,41 +23,41 @@ public class BinaryTree {
         }
      
         public Node getLeftChild() {
-            return this.leftChild;
+            return this.left;
         }
      
         public void setLeftChild(final Node leftChild) {
-            this.leftChild = leftChild;
+            this.left = leftChild;
         }
      
         public Node getRightChild() {
-            return this.rightChild;
+            return this.right;
         }
      
         public void setRightChild(final Node rightChild) {
-            this.rightChild = rightChild;
+            this.right = rightChild;
         }
      
         @Override
         public String toString() {
             return "Node{" +
                     "value=" + value +
-                    ", leftChild=" + leftChild +
-                    ", rightChild=" + rightChild +
+                    ", leftChild=" + left +
+                    ", rightChild=" + right +
                     '}';
         }
     }
 
-    private Node rootNode;
+    Node root;
     private int size;
 
     public BinaryTree() {
-        rootNode = null;
+        root = null;
         size = 0;
     }
 
     public BinaryTree(BinaryTree _tree) {
-        this.rootNode = _tree.rootNode;
+        this.root = _tree.root;
         this.size = _tree.size;
     }
 
@@ -60,7 +66,7 @@ public class BinaryTree {
     }
 
     public Node findNodeByValue(int value) {
-        Node currentNode = rootNode;
+        Node currentNode = root;
         while (currentNode.getValue() != value) {
             if (value < currentNode.getValue()) {
                 currentNode = currentNode.getLeftChild();
@@ -74,41 +80,38 @@ public class BinaryTree {
         return currentNode; // возвращаем найденный элемент
     }
     
-    public void insertNode(int value) {
-        Node newNode = new Node(); 
-        newNode.setValue(value);
-        if (rootNode == null) {
-            rootNode = newNode;
-            size++;
+    // public void traverseInOrder(Node node) {
+    //     node = root;
+    //     if (node != null) {
+    //         traverseInOrder(node.getLeftChild());
+    //         System.out.print(" " + node.value);
+    //         traverseInOrder(node.getRightChild());
+    //     }
+    // }
+
+    private Node addRecursive(Node current, int value) {
+        if (current == null) {
+            return new Node(value);
         }
-        else {
-            Node currentNode = rootNode;
-            Node parentNode;
-            while (true)
-            {
-                parentNode = currentNode;
-                if (value < currentNode.getValue()) {
-                    currentNode = currentNode.getLeftChild();
-                    if (currentNode == null){
-                        parentNode.setLeftChild(newNode);
-                        size++;
-                        return;
-                    }
-                }
-                else {
-                    currentNode = currentNode.getRightChild();
-                    if (currentNode == null) {
-                        parentNode.setRightChild(newNode); 
-                        size++; 
-                        return;
-                    }
-                }
-            }
+    
+        if (value < current.value) {
+            current.left = addRecursive(current.left, value);
+        } else if (value > current.value) {
+            current.right = addRecursive(current.right, value);
+        } else {
+            // value already exists
+            return current;
         }
+        return current;
+    }
+
+    public void add(int value) {
+        root = addRecursive(root, value);
+        size++;
     }
 
     public void clearTree() {
-        rootNode = null;
+        root = null;
         size = 0;
     }
 }

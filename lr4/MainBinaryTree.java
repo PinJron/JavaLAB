@@ -2,24 +2,25 @@ class MainBinaryTree{
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         // вставляем узлы в дерево:
-        tree.insertNode(6);
-        tree.insertNode(8);
-        tree.insertNode(5);
-        tree.insertNode(8);
-        tree.insertNode(2);
-        tree.insertNode(9);
-        tree.insertNode(7);
-        tree.insertNode(4);
-        tree.insertNode(10);
-        tree.insertNode(3);
-        tree.insertNode(1);
+        tree.add(6);
+        tree.add(8);
+        tree.add(5);
+        tree.add(8);
+        tree.add(2);
+        tree.add(9);
+        tree.add(7);
+        tree.add(4);
+        tree.add(10);
+        tree.add(3);
+        tree.add(1);
 
-        BinaryTree tree1 = new BinaryTree(tree);
         
-        System.out.println(tree.getSize());
-        System.out.println(tree1.getSize());
+        BinaryTree tree1 = new BinaryTree(tree);
+        // tree.traverseInOrder(null);
+        
+        System.out.println("tree " + tree.getSize());
 
-        tree1.insertNode(11);
+        tree1.add(11);
         
         // находим узел по значению и выводим его в консоли
         BinaryTree.Node foundNode = tree.findNodeByValue(9);
@@ -27,8 +28,8 @@ class MainBinaryTree{
         BinaryTree.Node foundNode1 = tree1.findNodeByValue(8);
         foundNode1.printNode();
 
-        tree1.clearTree(); //починить ошибку при ненахождении узла
-        BinaryTree.Node foundNode2 = tree1.findNodeByValue(9);
-        foundNode2.printNode();
+        // tree1.clearTree(); //починить ошибку при ненахождении узла
+        // BinaryTree.Node foundNode2 = tree1.findNodeByValue(9);
+        // foundNode2.printNode();
     }
 }

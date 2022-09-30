@@ -19,7 +19,7 @@ public class TestMyVector {
     @Test
     public void testPop() throws Exception {
         vec.push(5);
-        assertEquals(5, vec.pop(), 0);
+        assertEquals(5, vec.getLast(), 0);
     }
 
     @Test

@@ -52,7 +52,7 @@ public class MyVector<T>{
         this.len++;
     }
 
-    public T pop() throws Exception{
+    public T getLast() throws Exception{
         if (this.len == 0){
             throw new Exception("Error: nothing to pop");
         }

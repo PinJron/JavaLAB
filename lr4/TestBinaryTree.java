@@ -1,14 +1,22 @@
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestBinaryTree {
+    BinaryTree tree = new BinaryTree();
+
     @Test
     public void testGetSize() {
-        BinaryTree tree = new BinaryTree();
         tree.add(6);
         tree.add(8);
         tree.add(5);
         assertEquals(3, tree.getSize(), 0);
+    }
+
+    @Test
+    public void testFindNodeByValue() {
+        tree.add(6);
+        tree.add(8);
+        tree.add(5);
+        assertEquals(5, tree.findNodeByValue(5).getValue(), 0);
     }
 }

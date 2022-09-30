@@ -1,5 +1,5 @@
 ::compile and run
+javac .\BinaryTree.java
 javac .\Main.java
-javac .\MyList.java
 java .\Main.java
 del .\*.class

@@ -1,6 +1,4 @@
-import MyList.*;
-
-class Program{
+class Main{
     public static void main(String[] argc) throws Exception {
         MyList list = new MyList();
         list.insertHead(5);

@@ -1,6 +1,4 @@
 import org.junit.Test;
-import MyList.*;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestMyList {

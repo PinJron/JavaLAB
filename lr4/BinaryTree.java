@@ -50,6 +50,11 @@ public class BinaryTree {
         size = 0;
     }
 
+    public BinaryTree(BinaryTree _tree) {
+        this.rootNode = _tree.rootNode;
+        this.size = _tree.size;
+    }
+
     public int getSize() {
         return size;
     }
@@ -100,5 +105,10 @@ public class BinaryTree {
                 }
             }
         }
+    }
+
+    public void clearTree() {
+        rootNode = null;
+        size = 0;
     }
 }

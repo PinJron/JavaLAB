@@ -1,6 +1,6 @@
 class MainBinaryTree{
     public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
+        BinaryTree<Integer> tree = new BinaryTree<>();
         // вставляем узлы в дерево:
         tree.add(6);
         tree.add(8);
@@ -15,7 +15,7 @@ class MainBinaryTree{
         tree.add(1);
 
         
-        BinaryTree tree1 = new BinaryTree(tree);
+        BinaryTree<Integer> tree1 = new BinaryTree<>(tree);
         // tree.traverseInOrder(null);
         
         System.out.println("tree " + tree.getSize());
@@ -23,12 +23,12 @@ class MainBinaryTree{
         tree1.add(11);
         
         // находим узел по значению и выводим его в консоли
-        BinaryTree.Node foundNode = tree.findNodeByValue(9);
+        BinaryTree<Integer>.Node foundNode = tree.findNodeByValue(9);
         foundNode.printNode();
-        BinaryTree.Node foundNode1 = tree1.findNodeByValue(8);
+        BinaryTree<Integer>.Node foundNode1 = tree1.findNodeByValue(8);
         foundNode1.printNode();
 
-        // tree1.clearTree(); //починить ошибку при ненахождении узла
+        // tree1.clearTree();
         // BinaryTree.Node foundNode2 = tree1.findNodeByValue(9);
         // foundNode2.printNode();
     }

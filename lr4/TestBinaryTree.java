@@ -2,7 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TestBinaryTree {
-    BinaryTree tree = new BinaryTree();
+    BinaryTree<Integer> tree = new BinaryTree<>();
 
     @Test
     public void testGetSize() {

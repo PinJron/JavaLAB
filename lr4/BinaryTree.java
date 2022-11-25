@@ -1,10 +1,10 @@
-public class BinaryTree {
+public class BinaryTree<T extends Comparable<T>> {
     public class Node {
-        private int value; // ключ узла
+        private T value; // ключ узла
         private Node left; // Левый узел потомок
         private Node right; // Правый узел потомок
 
-        Node(int value) {
+        Node(T value) {
             this.value = value;
             right = null;
             left = null;
@@ -14,11 +14,11 @@ public class BinaryTree {
             System.out.println(" Выбранный узел имеет значение : " + value);
         }
      
-        public int getValue() {
+        public T getValue() {
             return this.value;
         }
      
-        public void setValue(final int value) {
+        public void setValue( T value) {
             this.value = value;
         }
      
@@ -26,7 +26,7 @@ public class BinaryTree {
             return this.left;
         }
      
-        public void setLeftChild(final Node leftChild) {
+        public void setLeftChild( Node leftChild) {
             this.left = leftChild;
         }
      
@@ -56,7 +56,7 @@ public class BinaryTree {
         size = 0;
     }
 
-    public BinaryTree(BinaryTree _tree) {
+    public BinaryTree(BinaryTree<T> _tree) {
         this.root = _tree.root;
         this.size = _tree.size;
     }
@@ -65,10 +65,11 @@ public class BinaryTree {
         return size;
     }
 
-    public Node findNodeByValue(int value) {
+    public Node findNodeByValue(T value) {
         Node currentNode = root;
         while (currentNode.getValue() != value) {
-            if (value < currentNode.getValue()) {
+            int res = value.compareTo(currentNode.getValue());
+            if (res < 0) {
                 currentNode = currentNode.getLeftChild();
             } else { //движение вправо
                 currentNode = currentNode.getRightChild();
@@ -89,14 +90,15 @@ public class BinaryTree {
     //     }
     // }
 
-    private Node addRecursive(Node current, int value) {
+    private Node addRecursive(Node current, T value) {
         if (current == null) {
             return new Node(value);
         }
-    
-        if (value < current.value) {
+        int res = value.compareTo(current.getValue());
+
+        if (res < 0) {
             current.left = addRecursive(current.left, value);
-        } else if (value > current.value) {
+        } else if (res > 0) {
             current.right = addRecursive(current.right, value);
         } else {
             // value already exists
@@ -105,7 +107,7 @@ public class BinaryTree {
         return current;
     }
 
-    public void add(int value) {
+    public void add(T value) {
         root = addRecursive(root, value);
         size++;
     }
